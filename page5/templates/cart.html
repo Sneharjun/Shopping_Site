@@ -1,0 +1,98 @@
+{% extends 'master.html' %}
+{% load static %}
+
+{% block title %}cart{% endblock %}
+
+{% block content %}
+<style>
+  /* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number]{
+  -moz-appearance: textfield;
+}
+</style>
+<h1 id="cart">Cart</h1>
+
+
+<div class="shopping-cart">
+<section class="sec1">
+  <div class="container">
+    <div class="row">
+      <div class="mainbox">
+      <div class="col-lg-3 col-md-4-col-sm-6">
+        <div class="inbox">
+          <!-- <label class="product-image">Image</label> -->
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-4-col-sm-6">
+        <div class="inbox">
+          <!-- <label class="product-details">Product</label> -->
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-4-col-sm-6">
+        <div class="inbox">
+          <!-- <label class="product-quantity">Quantity</label> -->
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-4-col-sm-6">
+        <div class="inbox">
+          <!-- <label class="product-quantity">Sub total</label> -->
+        </div>
+      </div>
+      {% for x in carts %}
+    <div class="row">
+      <div class="col">
+        <div class="inbox2">
+          <img src="/media/{{ x.cart_image }}" class="image">
+        </div>
+      </div>
+      <div class="col">
+        <div class="inbox2">
+          <p>{{ x.cart_name}}</p>
+          <!-- <p class="product-description" style="text-align: justify;">The best dog bones of all time. Holy crap. Your dog will be begging for these things! I got curious once and ate one myself. I'm a fan.</p> -->
+          <div class="product-price" style="font-size: 20px; text-align: left; font-weight: bold;">
+          <p>{{ x.cart_price}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="inbox3 d-flex">
+          <a href="cartm/{{x.cart_pid}}"><button class="btn btn-link px-2">
+                          <i class="fas bi-dash"></i>
+                        </button></a>
+  
+                        <input id="form1" min="1" name="quantity" value="{{ x.cart_qty}}" type="number" class="form-control form-control-sm w-25" />
+  
+                        <a href="cartp/{{x.cart_pid}}"><button class="btn btn-link px-2"
+                         >
+                          <i class="fas bi-plus"></i>
+                        </button></a>
+          
+          <a href="delcart/{{x.id}}"><i class="bi-trash3 icon2"></i></a>
+        </div>
+      </div>
+      <div class="col">
+        <div class="inbox2">
+          <p class="para4">Sub total =  <span style="font-size: 18px; font-weight: bold;margin-left:10px;">{{ x.cart_amount}}</span></p>
+        </div> 
+      </div>
+    </div>
+    {% endfor %}
+    <div class="row">
+      <div class="col-8 mx-auto text-end pb-5">
+        <a href="/checkout"><button class="btn btn-success btns" type="submit">Order Now</button></a>
+      </div>
+    </div>
+    
+  </div>
+  </div>
+</section>
+ 
+
+{% endblock %} 

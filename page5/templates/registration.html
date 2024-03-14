@@ -1,0 +1,43 @@
+{% extends 'master.html' %}
+{% load static %}
+
+{% block title %}Registration{% endblock %}
+
+{% block content %}
+<h1 id="demo"><u>Register Page</u></h1>
+
+<div style="color: red;">{{ msg }}</div>
+<form action="/registration" method="post">
+
+      {% csrf_token %}
+      
+    <div class="mb-3 mt-3">
+      <label for="reg_name" class="form-label">Name:</label>
+      <input type="text" class="form-control" id="reg_name" placeholder="Enter your Name" name="reg_name">
+    </div>
+
+    <div class="mb-3 mt-3">
+        <label for="reg_email" class="form-label">Email ID:</label>
+        <input type="email" class="form-control" id="reg_email" placeholder="Enter your Email ID" name="reg_email">
+      </div>
+
+      <div class="mb-3 mt-3">
+        <label for="reg_mob" class="form-label">Mobile No.:</label>
+        <input type="number" class="form-control" id="reg_mob" placeholder="Enter your Mobile No" name="reg_mob">
+      </div>
+
+      <div class="mb-3 mt-3">
+        <label for="reg_username" class="form-label">Username:</label>
+        <input type="text" class="form-control" id="reg_username" placeholder="Enter your Username" name="reg_username">
+      </div>
+
+    <div class="mb-3">
+      <label for="reg_pwd" class="form-label">Password:</label>
+      <input type="password" class="form-control" id="reg_pwd" placeholder="Enter password" name="reg_pwd">
+    </div>
+
+    
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+
+{% endblock %}

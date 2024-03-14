@@ -1,0 +1,156 @@
+{% extends 'master.html' %}
+{% load static %}
+
+{% block title %}cart{% endblock %}
+
+{% block content %}
+<h1 id="cart">Checkout</h1>
+
+<style>
+    @media (min-width: 1025px) {
+.h-custom {
+height: 100vh !important;
+}
+}
+
+.card-registration .select-input.form-control[readonly]:not([disabled]) {
+font-size: 1rem;
+line-height: 2.15;
+padding-left: .75em;
+padding-right: .75em;
+}
+
+.card-registration .select-arrow {
+top: 13px;
+}
+
+.bg-grey {
+background-color: #eae8e8;
+}
+
+@media (min-width: 992px) {
+.card-registration-2 .bg-grey {
+border-top-right-radius: 16px;
+border-bottom-right-radius: 16px;
+}
+}
+
+@media (max-width: 991px) {
+.card-registration-2 .bg-grey {
+border-bottom-left-radius: 16px;
+border-bottom-right-radius: 16px;
+}
+}
+</style>
+<section class="h-100 h-custom" style="background-color: #d2c9ff;">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12">
+          <div class="card card-registration card-registration-2" style="border-radius: 15px;">
+            <div class="card-body p-0">
+              <div class="row g-0">
+                <div class="col-lg-8">
+                  <div class="p-5">
+                    <div class="d-flex justify-content-between align-items-center mb-5">
+                      <h1 class="fw-bold mb-0 text-black">Shopping Cart</h1>
+                      <!-- <h6 class="mb-0 text-muted">3 items</h6> -->
+                    </div>
+                    <hr class="my-4">
+
+                    {% for x in check %}
+                    
+                    <div class="row mb-4 d-flex justify-content-between align-items-center">
+                      <div class="col-md-2 col-lg-2 col-xl-2">
+                        <img
+                          src="/media/{{ x.cart_image }}"
+                          class="img-fluid rounded-3" alt="Cotton T-shirt">
+                      </div>
+                      <div class="col-md-3 col-lg-3 col-xl-3">
+                        <h6 class="text-muted">{{ x.cart_name}}</h6>
+                        <!-- <h6 class="text-black mb-0">Cotton T-shirt</h6> -->
+                      </div>
+
+                      <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                        <!-- <a href="checkm/{{x.cart_pid}}"><button class="btn btn-link px-2">
+                          <i class="fas bi-dash"></i></button></a>
+  
+                        <input id="form1" min="0" name="quantity" value="{{ x.cart_qty}}" type="number"
+                          class="form-control form-control-sm" />
+  
+                        <a href="checkp/{{x.cart_pid}}"><button class="btn btn-link px-2">
+                          <i class="fas bi-plus"></i></button></a> -->
+                      </div>
+                      <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                        <h6 class="mb-0">{{ x.cart_amount}}</h6>
+                      </div>
+                      <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                        <a href="delitem/{{x.id}}" class="text-muted"><i class="fas bi-x"></i></a>
+                      </div>
+                    </div> 
+                    {% endfor %}
+                    <hr class="my-4">
+  
+                    <div class="pt-5">
+                      <h6 class="mb-0"><a href="/products" class="text-body"><i class="fas bi-arrow-left me-2"></i>Back to shop</a></h6>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-4 bg-grey">
+                  <div class="p-5">
+                    <h3 class="fw-bold mb-5 mt-2 pt-1">Summary</h3>
+                    <hr class="my-4">
+  
+                    <div class="d-flex justify-content-between mb-4">
+                    <span class="mb-3" style="font-size: 20px;">Items : {{ checklen }}</span>
+                    <span style="font-weight: bold;">₹{{ total }}</span>
+                    </div>
+                    
+                    <div class="d-flex justify-content-between mb-4">
+                    <span class="mb-3" style="font-size: 20px;">Shipping Charge : </span>
+                    <span style="font-weight: bold;">₹{{ shpchrg }}</span>
+                    </div>
+
+  
+                    <div class="mb-4 pb-2">
+                      <form action="/order" method="post">
+                       {% csrf_token %}
+
+                      <label for="name">Name</label>
+                      <input type="text" class="form-control" required name="order_name"><br>
+                      <label for="comment">Address:</label>
+                      <textarea class="form-control" rows="3" id="comment" required name="order_address"></textarea>
+                      <label for="number">Mobile Number</label>
+                      <input type="number" class="form-control" required name="order_number"><br>
+                    </div>
+  
+                    <h5 class="text-uppercase mb-3">Payment</h5>
+  
+                    <div class="mb-5">
+                      <div class="form-outline">
+                        <input class="form-check-input" type="checkbox" id="check1" name="COD" value="something" required checked>
+                        <label class="form-check-label">Cash on Delivery</label>
+                      </div>
+                    </div>
+  
+                    <hr class="my-4">
+  
+                    <div class="d-flex justify-content-between mb-5">
+                      <h5 class="text-uppercase">Total price</h5>
+                      <h5>{{ gtotal }}</h5>
+                    </div>
+  
+                  <button class="btn btn-success btn-block btn-lg" data-mdb-ripple-color="dark">Confirm Order</button>
+                  </form>
+  
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+
+{% endblock %} 

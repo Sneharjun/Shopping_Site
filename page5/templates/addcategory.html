@@ -1,0 +1,30 @@
+{% extends 'master.html' %}
+{% load static %}
+
+{% block title %}Addcategory{% endblock %}
+
+{% block content %}
+<h1 id="demo"><u>Add Category </u></h1>
+{% if msg != '' %}
+<div class="alert alert-success">
+  <strong>Success!</strong> {{ msg }}.
+</div>
+{% endif %}
+
+<form action="/addcategory" method="post" enctype="multipart/form-data">
+
+      {% csrf_token %}
+      
+    <div class="mb-3 mt-3">
+      <label for="cat_name" class="form-label">Category:</label>
+      <input type="text" class="form-control" id="cat_name" placeholder="Choose your category" name="cat_name">
+    </div>
+
+      <div class="mb-3 mt-3">
+        <label for="cat_image" class="control-label">Choose Category Image:</label>
+        <input type="file" class="form-control" id="cat_image" placeholder="Choose Category Image" name="cat_image">
+      </div> 
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+
+{% endblock %}

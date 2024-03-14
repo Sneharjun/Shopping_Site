@@ -1,0 +1,31 @@
+{% extends 'master.html' %}
+{% load static %}
+
+{% block title %}Contact{% endblock %}
+
+{% block content %}
+<h1 id="demo">Contact Page</h1>
+<form action="/contact" method="post">
+
+      {% csrf_token %}
+      
+    <div class="mb-3 mt-3">
+      <label for="contact_name" class="form-label">Name:</label>
+      <input type="text" class="form-control" id="contact_name" placeholder="Enter your Name" name="contact_name">
+    </div>
+
+    <div class="mb-3 mt-3">
+        <label for="contact_email" class="form-label">Email ID:</label>
+        <input type="email" class="form-control" id="contact_email" placeholder="Enter your Email ID" name="contact_email">
+      </div>
+
+    <div class="mb-3">
+      <label for="contact_msg" class="form-label">Message:</label>
+      <input type="text" class="form-control" id="contact_msg" placeholder="Enter your Message" name="contact_msg">
+    </div>
+
+    
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+
+{% endblock %}

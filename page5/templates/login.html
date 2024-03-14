@@ -1,0 +1,27 @@
+{% extends 'master.html' %}
+{% load static %}
+
+{% block title %}login{% endblock %}
+
+{% block content %}
+<h1 id="demo">Login Page</h1>
+<form action="/login" method="post">
+
+      {% csrf_token %}
+      
+
+      <div class="mb-3 mt-3">
+        <label for="log_username" class="form-label">Username:</label>
+        <input type="text" class="form-control" id="log_username" placeholder="Enter your Username" name="log_username">
+      </div>
+
+    <div class="mb-3">
+      <label for="log_pwd" class="form-label">Password:</label>
+      <input type="password" class="form-control" id="log_pwd" placeholder="Enter password" name="log_pwd">
+    </div>
+
+    
+    <button type="login" class="btn btn-primary">Login</button>
+  </form>
+
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'master.html' %}
+{% load static %}
+
+{% block title %}products{% endblock %}
+
+{% block content %}
+<!-- <h1 id="demo">Products</h1> -->
+
+
+    <div class="content">
+<div class="container">
+    <div class="row">
+        <div class="col-3">
+            <div class="sidebar mt-3">
+                <ul type="">
+
+                    {% for x in category %}
+                    <li><a class="active" href="/products?cid={{ x.id }}">{{ x.cat_name }}</a></li>
+                    {% endfor %}
+                </div>
+            </ul>
+        </div>
+        <div class="col-sm-9">
+            <div class="row">
+                
+                {% for x in products %}
+                <div class="col-sm-4">
+                    <div class="probox mt-3">
+                        <img src="/media/{{ x.pro_image }}" class="proimage">
+                        <h4>{{ x.pro_name}}</h4>
+                        <p>{{ x.pro_price}}</p>
+                        <div class="d-flex justify.content.end">
+                            <a href="addtocart/{{ x.id }}" class="btn btn-primary">Cart<i class="bi-heart-fill icon3" style="margin-left: 8px;"></i></a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+</div>
+
+{% endblock %}
